@@ -1,0 +1,11 @@
+This is a test
+%
+Of my line reading script
+%
+Multi
+line
+should
+work
+%
+Yes
+%

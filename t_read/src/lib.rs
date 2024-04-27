@@ -4,17 +4,17 @@ use std::{
     io::{BufRead, BufReader},
 };
 
-pub fn read(filename: &str) -> Result<String, String> {
+pub fn t_read(filename: &str) -> Result<String, ()> {
     let file = File::open(filename).unwrap();
     let reader = BufReader::new(file);
 
-    let split_collection: Vec<Vec<u8>> = reader.split(b'%').map(|l| l.unwrap()).collect();
-    let index = rand::thread_rng().gen_range(0..split_collection.len());
+    let string_collection: Vec<String> = reader
+        .split(b'%')
+        .map(|l| String::from_utf8(l.unwrap()).unwrap())
+        .collect();
+    let index = rand::thread_rng().gen_range(0..string_collection.len());
 
-    let result = String::from_utf8(split_collection.get(index).unwrap().to_vec())
-        .unwrap()
-        .trim()
-        .to_string();
+    let result = string_collection.get(index).unwrap().trim().to_string();
 
     Ok(result)
 }
