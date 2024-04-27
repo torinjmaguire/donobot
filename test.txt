@@ -1,9 +1,0 @@
-This is a test
-%
-of my sampling system
-%
-I need to add
-multiple lines to make this work!
-%
-It should end with a thingy too
-%
