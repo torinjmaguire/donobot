@@ -13,6 +13,18 @@ async fn wisdom(ctx: Context<'_>) -> Result<(), Error> {
     Ok(())
 }
 
+#[poise::command(slash_command, prefix_command)]
+async fn wise_o_meter(ctx: Context<'_>) -> Result<(), Error> {
+    let coin = rand::random();
+
+    if coin {
+        ctx.say("Hmmm, yes, very wise").await?;
+    } else {
+        ctx.say("Mmmm, no, very unwise").await?;
+    }
+    Ok(())
+}
+
 #[shuttle_runtime::main]
 async fn main(#[shuttle_runtime::Secrets] secret_store: SecretStore) -> ShuttleSerenity {
     let discord_token = secret_store
@@ -21,7 +33,7 @@ async fn main(#[shuttle_runtime::Secrets] secret_store: SecretStore) -> ShuttleS
 
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
-            commands: vec![wisdom()],
+            commands: vec![wisdom(), wise_o_meter()],
             ..Default::default()
         })
         .setup(|ctx, _ready, framework| {

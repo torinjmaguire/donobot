@@ -529,6 +529,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "poise",
+ "rand",
  "reqwest 0.12.3",
  "scraper",
  "serenity",
