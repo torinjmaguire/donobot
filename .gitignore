@@ -1,1 +1,4 @@
+/target
+.shuttle-storage
+Secrets*.toml
 t_read/target
