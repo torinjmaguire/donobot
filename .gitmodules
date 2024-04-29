@@ -1,0 +1,3 @@
+[submodule "sweet"]
+	path = sweet
+	url = https://github.com/torinjmaguire/sweet
