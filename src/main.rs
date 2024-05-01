@@ -27,7 +27,7 @@ async fn wise_o_meter(ctx: Context<'_>) -> Result<(), Error> {
 #[poise::command(prefix_command)]
 async fn torin_says(ctx: Context<'_>) -> Result<(), Error> {
     let phrase = t_read::t_read("./sweet/sweet.txt").unwrap();
-    if ctx.author().name == "eternalstarve" {
+    if ctx.author().id == 792734296237539328 {
         ctx.say(format!("Torin says...\n{phrase}")).await?;
     }
     Ok(())
