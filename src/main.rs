@@ -24,6 +24,14 @@ async fn wise_o_meter(ctx: Context<'_>) -> Result<(), Error> {
     }
     Ok(())
 }
+#[poise::command(prefix_command)]
+async fn torin_says(ctx: Context<'_>) -> Result<(), Error> {
+    let phrase = t_read::t_read("./sweet/sweet.txt").unwrap();
+    if ctx.author().name == "eternalstarve" {
+        ctx.say(format!("Torin says...\n{phrase}")).await?;
+    }
+    Ok(())
+}
 
 #[shuttle_runtime::main]
 async fn main(#[shuttle_runtime::Secrets] secret_store: SecretStore) -> ShuttleSerenity {
@@ -33,7 +41,7 @@ async fn main(#[shuttle_runtime::Secrets] secret_store: SecretStore) -> ShuttleS
 
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
-            commands: vec![wisdom(), wise_o_meter()],
+            commands: vec![wisdom(), wise_o_meter(), torin_says()],
             prefix_options: poise::PrefixFrameworkOptions {
                 prefix: Some("!".into()),
                 case_insensitive_commands: true,
@@ -49,7 +57,7 @@ async fn main(#[shuttle_runtime::Secrets] secret_store: SecretStore) -> ShuttleS
         })
         .build();
 
-    let client = ClientBuilder::new(discord_token, GatewayIntents::non_privileged())
+    let client = ClientBuilder::new(discord_token, GatewayIntents::non_privileged() | GatewayIntents::MESSAGE_CONTENT)
         .framework(framework)
         .await
         .map_err(shuttle_runtime::CustomError::new)?;
