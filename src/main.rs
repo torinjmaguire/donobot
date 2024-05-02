@@ -25,7 +25,7 @@ async fn wise_o_meter(ctx: Context<'_>) -> Result<(), Error> {
     Ok(())
 }
 #[poise::command(prefix_command)]
-async fn torin_says(ctx: Context<'_>) -> Result<(), Error> {
+async fn torinsays(ctx: Context<'_>) -> Result<(), Error> {
     let phrase = t_read::t_read("./sweet/sweet.txt").unwrap();
     if ctx.author().id == 792734296237539328 {
         ctx.say(format!("Torin says...\n{phrase}")).await?;
@@ -41,7 +41,7 @@ async fn main(#[shuttle_runtime::Secrets] secret_store: SecretStore) -> ShuttleS
 
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
-            commands: vec![wisdom(), wise_o_meter(), torin_says()],
+            commands: vec![wisdom(), wise_o_meter(), torinsays()],
             prefix_options: poise::PrefixFrameworkOptions {
                 prefix: Some("!".into()),
                 case_insensitive_commands: true,
